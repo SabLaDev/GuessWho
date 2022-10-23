@@ -8,45 +8,75 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @State private var isKnocked = "🚪TOC! TOC! TOC!🚪"
-    private var guests = ["👻 Casper","🧛‍♂️ Dracula","🎅🏻 Le Père Noël","🕵️‍♂️ Sherlock HOLMES","👨‍🔬 Bruce BANNER","👨🏼‍🎨 Léonard DE VINCI", "👨🏻‍💻 Mark ZUCKERBERG"]
+    private var guests = ["👻 Casper","🧛‍♂️ Dracula","🎅🏻 Père Noël","🕵️‍♂️ Sherlock HOLMES","👨‍🔬 Bruce BANNER","👨🏼‍🎨 Léonard DE VINCI", "👨🏻‍💻 Mark ZUCKERBERG"]
+    
+//    let deviceWidth = UIScreen.main.bounds.width
+//    let deviceHeight = UIScreen.main.bounds.height
+    
     var body: some View {
         ZStack {
-            if(isKnocked == "🚪TOC! TOC! TOC!🚪"){
-                Image("whoIsAtTheDoor")
-            } else {
-                Image("welcome")
-            }
-           
+            Image("questionmark")
+                .resizable(capInsets: EdgeInsets(top: 10.0, leading: 38.0, bottom: 23.0, trailing: 17.0), resizingMode: .tile)
+                .scaledToFill()
+                .aspectRatio(contentMode: .fill)
+                .ignoresSafeArea()
+            
             VStack {
-                Text("❓Devine qui vient dîner❓")
+                Spacer()
+                Text("Devine qui vient dîner 🤔")
                     .font(.largeTitle)
-                    .padding()
+                    .multilineTextAlignment(.center)
+                    .bold()
+                    //.background()
+                    
                         
                 Text(isKnocked)
                     .font(.title)
-                    .padding()
-                    .bold()
+                    .multilineTextAlignment(.center)
+                    .padding(.all, 36.0)
+                    //.bold()
+                    //.background()
                 
+                
+                if(isKnocked == "🚪TOC! TOC! TOC!🚪"){
+                    Image("whoIsAtTheDoor")
+                        .resizable()
+                        .frame(width: 200, height: 250)
+                        .padding()
+                        .cornerRadius(25)
+                } else {
+                    Image("welcome")
+                        .resizable()
+                        .frame(width: 200, height: 250)
+                        .padding()
+                        .cornerRadius(15)
+                }
+
                 Spacer()
                 
                 Button {
                     if(isKnocked == "🚪TOC! TOC! TOC!🚪"){
                         isKnocked = guests.randomElement()!
+                            
                     }else{
                         isKnocked = "🚪TOC! TOC! TOC!🚪"
                     }
+
                 } label: {
                     if(isKnocked == "🚪TOC! TOC! TOC!🚪" ){
                         Text("Qui est là?").font(.title)
                     } else {
-                        Text("Bienvenue \(isKnocked)") .font(.headline)
+                        Text("Bienvenue\n \(isKnocked)")
+                            .font(.title)
+                            .multilineTextAlignment(.center)
                     }
-                        
+                    
                 }
              
-                .padding()
-                .background(.green)
+                .padding(.all, 21.0)
+                .background(.pink)
                 .foregroundColor(.white)
                 .cornerRadius(15)
                 
@@ -54,7 +84,8 @@ struct ContentView: View {
                 
                 Text("Made by Sabrina AUGUSTY")
                     .font(.footnote)
-                    .foregroundColor(.cyan)
+                    .foregroundColor(.black)
+                    .bold()
                 
             }
         }
@@ -65,5 +96,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environment(\.sizeCategory, .medium)
     }
 }
