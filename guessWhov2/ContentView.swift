@@ -9,63 +9,65 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var isKnocked = "🚪TOC! TOC! TOC!🚪"
+    @State private var isKnocked = "🚪Toc! Toc! Toc!🚪"
     private var guests = ["👻 Casper","🧛‍♂️ Dracula","🎅🏻 Père Noël","🕵️‍♂️ Sherlock HOLMES","👨‍🔬 Bruce BANNER","👨🏼‍🎨 Léonard DE VINCI", "👨🏻‍💻 Mark ZUCKERBERG"]
     
-//    let deviceWidth = UIScreen.main.bounds.width
-//    let deviceHeight = UIScreen.main.bounds.height
     
     var body: some View {
-        ZStack {
-            Image("questionmark")
-                .resizable(capInsets: EdgeInsets(top: 10.0, leading: 38.0, bottom: 23.0, trailing: 17.0), resizingMode: .tile)
-                .scaledToFill()
-                .aspectRatio(contentMode: .fill)
-                .ignoresSafeArea()
+        ZStack{
+//            Image("questionmark")
+//                .resizable(capInsets: EdgeInsets(top: 10.0, leading: 38.0, bottom: 23.0, trailing: 17.0), resizingMode: .tile)
+//                .scaledToFill()
+//                .aspectRatio(contentMode: .fill)
+//                .ignoresSafeArea()
             
-            VStack {
-                Spacer()
-                Text("Devine qui vient dîner 🤔")
+            if(isKnocked == "🚪Toc! Toc! Toc!🚪"){
+                Image("whoIsAtTheDoor")
+                    .resizable()
+                    .scaledToFill()
+                    //.frame(width: 200, height: 250)
+                    //.padding()
+                    //.cornerRadius(25)
+            } else {
+                Image("welcome")
+                    .resizable()
+                    .scaledToFill()
+                    //.frame(width: 200, height: 250)
+                    //.padding()
+                    //.cornerRadius(15)
+            }
+
+            
+            VStack(alignment: .center, spacing: 10) {
+              
+                Text("Devine qui vient dîner")
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
                     .bold()
-                    //.background()
+                    .padding(.top, 20.0)
                     
-                        
+                    Spacer()
+                    Spacer()
+                    Spacer()
                 Text(isKnocked)
                     .font(.title)
                     .multilineTextAlignment(.center)
-                    .padding(.all, 36.0)
+                    .padding(.all, 25.0)
                     //.bold()
-                    //.background()
-                
-                
-                if(isKnocked == "🚪TOC! TOC! TOC!🚪"){
-                    Image("whoIsAtTheDoor")
-                        .resizable()
-                        .frame(width: 200, height: 250)
-                        .padding()
-                        .cornerRadius(25)
-                } else {
-                    Image("welcome")
-                        .resizable()
-                        .frame(width: 200, height: 250)
-                        .padding()
-                        .cornerRadius(15)
-                }
+                    .background()
+                    .cornerRadius(15)
 
                 Spacer()
-                
                 Button {
-                    if(isKnocked == "🚪TOC! TOC! TOC!🚪"){
+                    if(isKnocked == "🚪Toc! Toc! Toc!🚪"){
                         isKnocked = guests.randomElement()!
                             
                     }else{
-                        isKnocked = "🚪TOC! TOC! TOC!🚪"
+                        isKnocked = "🚪Toc! Toc! Toc!🚪"
                     }
 
                 } label: {
-                    if(isKnocked == "🚪TOC! TOC! TOC!🚪" ){
+                    if(isKnocked == "🚪Toc! Toc! Toc!🚪" ){
                         Text("Qui est là?").font(.title)
                     } else {
                         Text("Bienvenue\n \(isKnocked)")
@@ -76,7 +78,7 @@ struct ContentView: View {
                 }
              
                 .padding(.all, 21.0)
-                .background(.pink)
+                .background(.brown)
                 .foregroundColor(.white)
                 .cornerRadius(15)
                 
