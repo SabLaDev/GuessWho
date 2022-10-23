@@ -37,9 +37,14 @@ struct ContentView: View {
                         isKnocked = "🚪TOC! TOC! TOC!🚪"
                     }
                 } label: {
-                    Text("Qui est là?")
-                        .font(.title)
+                    if(isKnocked == "🚪TOC! TOC! TOC!🚪" ){
+                        Text("Qui est là?").font(.title)
+                    } else {
+                        Text("Bienvenue \(isKnocked)") .font(.headline)
+                    }
+                        
                 }
+             
                 .padding()
                 .background(.green)
                 .foregroundColor(.white)
