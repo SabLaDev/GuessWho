@@ -52,7 +52,7 @@ struct ContentView: View {
                 Text(isKnocked)
                     .font(.title)
                     .multilineTextAlignment(.center)
-                    .padding(.all, 25.0)
+                    .padding(.all, 26.0)
                     //.bold()
                     .background()
                     .cornerRadius(15)
